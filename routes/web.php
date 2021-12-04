@@ -22,7 +22,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('post', PostController::class);
-Route::resource('users', UserController::class);
+Route::resource('user', UserController::class);
+Route::get('/home', function () {
+    return view('home');
+});
