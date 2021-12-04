@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', config('app.name').' | Register')
+@section('title', config('app.name').' | Regístrate')
 @section('content')
     <link rel="stylesheet" href="css/users/register.css">
     <div class="container-fluid">

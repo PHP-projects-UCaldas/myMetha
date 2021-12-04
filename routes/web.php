@@ -17,7 +17,7 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', function () {
-    return Auth::check() ? view('welcome') : redirect('login');
+    return Auth::check() ? view('home') : redirect('login');
 });
 
 Auth::routes();
