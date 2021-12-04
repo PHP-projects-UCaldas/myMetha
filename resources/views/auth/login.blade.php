@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', config('app.name').' | Login')
+@section('title', config('app.name').' | Iniciar Sesión')
 @section('content')
     <link rel="stylesheet" href="css/users/login.css">
     <div class="container-fluid">
