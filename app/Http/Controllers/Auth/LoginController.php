@@ -39,7 +39,15 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function login() {
-        return view('login');
+    public function logout(Request $request) {
+        Auth::logout();
+        return redirect('/');
+    }
+
+    public function checkLogin(Request $request){
+        $this->validate($request, [
+            'email'         => 'required|email',
+            'password'      => 'required|min:8',
+        ]);
     }
 }
