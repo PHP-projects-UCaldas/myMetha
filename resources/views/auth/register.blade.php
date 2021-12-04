@@ -51,7 +51,7 @@
                                         @enderror
                                     </div>
                                     <div class="form-group mb-3">
-                                        {!! Form::password('password-confirm', ['class' => 'form-control rounded-pill border-0 shadow-sm px-4 text-primary', 'required' => 'required', 'placeholder' => 'Confirmar contraseña']) !!}
+                                        {!! Form::password('password_confirmation', ['class' => 'form-control rounded-pill border-0 shadow-sm px-4 text-primary', 'required' => 'required', 'placeholder' => 'Confirmar contraseña']) !!}
                                     </div>
                                     {!! Form::submit(__('Registrarme'), ['class' => 'btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm']) !!}
                                 </form>
