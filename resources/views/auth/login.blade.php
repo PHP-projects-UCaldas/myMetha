@@ -1,9 +1,11 @@
 @extends('layouts.app')
 
+@section('title', config('app.name').' | Login')
 @section('content')
     <link rel="stylesheet" href="css/users/login.css">
     <div class="container-fluid">
         <form method="POST" action="{{ route('login') }}">
+            @csrf
             <div class="row no-gutter">
                 <!-- The image half -->
                 <div class="col-md-6 d-none d-md-flex bg-image"></div>
@@ -18,7 +20,7 @@
                                     <p class="text-muted mb-4">¡Bienvenido al futuro!</p>
                                     <form>
                                         <div class="form-group mb-3">
-                                            <input id="inputEmail" type="email" placeholder="Correo electrónico" required=""
+                                            <input id="email" type="email" name="email" placeholder="Correo electrónico" required=""
                                                 autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
                                             @error('email')
                                                 <span class="invalid-feedback" role="alert">
@@ -27,7 +29,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group mb-3">
-                                            <input id="inputPassword" type="password" placeholder="Contraseña" required=""
+                                            <input id="password" type="password" name="password" placeholder="Contraseña" required=""
                                                 class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
                                             @error('password')
                                                 <span class="invalid-feedback" role="alert">
