@@ -37,6 +37,10 @@
                 <input readonly type="datetime" class="form-control" id="created_at" value="{{ $user -> created_at }}">
             </div>
         </div>
-        <a class="btn btn-danger btn-sm" href="{{ URL::previous() }}">Aceptar</a>
+        <a class="btn btn-primary" href="{{ URL::previous() }}">Volver</a>
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteUser" data-id="1">
+            Eliminar usuario
+        </button>
+        @include('users.delete')
     </form>
 </div>
