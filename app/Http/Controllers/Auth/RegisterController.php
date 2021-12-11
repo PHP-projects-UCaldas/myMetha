@@ -8,6 +8,9 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Observer;
+use App\Models\Logger;
+use Illuminate\Support\Facades\Storage;
 
 class RegisterController extends Controller
 {
@@ -30,6 +33,7 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = '/';
+    private $observer;
 
     /**
      * Create a new controller instance.
@@ -39,6 +43,8 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        $this->observer = new Observer();
+        $this->observer->attach(new Logger());
     }
 
     /**
@@ -65,11 +71,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'lastname' => $data['lastname'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $this->observer->notify("users:created", $user);
+
+        return $user;
     }
 }
