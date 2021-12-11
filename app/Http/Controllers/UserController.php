@@ -68,7 +68,6 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
     }
 
     /**
@@ -80,7 +79,19 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        if ($request->has('password') && $request->input('password') != '' && $request->input('password') == $request->input('password_confirmation')) {
+            $user->password = bcrypt($request->input('password'));
+        } else if ($request->has('password') && $request->input('password') != '' && $request->input('password') != $request->input('password_confirmation')) {
+            return redirect()->back()->withErrors(['password' => 'Passwords do not match']);
+        }
+
+        $request->request->remove('password');
+        $request->request->remove('password_confirmation');
+
+        $user->update($request->all());
+        $user->save();
+
+        return redirect()->back();
     }
 
     /**
