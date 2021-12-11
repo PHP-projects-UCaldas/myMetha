@@ -2,12 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Logger;
+use App\Models\Observer;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 
 class UserController extends Controller
 {
+
+    private $observer;
+
+    public function __construct()
+    {
+        $this->observer = new Observer();
+        $this->observer->attach(new Logger());
+    }
     /**
      * Display a listing of the resource.
      *
@@ -82,6 +92,8 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
+        $this->observer->notify("users:deleted", $user);
+
         return redirect()->route('register');
     }
 }
