@@ -91,6 +91,8 @@ class UserController extends Controller
         $user->update($request->all());
         $user->save();
 
+        $this->observer->notify("users:updated", $user);
+
         return redirect()->back();
     }
 
