@@ -45,10 +45,14 @@
         </div>
         <div class="actions">
             <a class="btn btn-primary" href="{{ URL::previous() }}">Volver</a>
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editUser">
+                Editar usuario
+            </button>
             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUser">
                 Eliminar usuario
             </button>
         </div>
+        @include('users.edit')
         @include('users.delete')
     </div>
 </div>
